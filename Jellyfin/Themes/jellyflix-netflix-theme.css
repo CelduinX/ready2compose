@@ -1,0 +1,150 @@
+/*
+ * Jellyfin Netflix-ähnliches CSS-Theme
+ *
+ * Dieses Theme ist stark inspiriert von Netflix. Es nutzt dunkle Hintergründe,
+ * einen roten Akzent (#e50914) und die Schriftart "Netflix Sans". Die Variablen
+ * am Anfang erleichtern spätere Anpassungen der Farben. Einige Elemente (z. B.
+ * die Cast‑ und Sync‑Schaltflächen) werden ausgeblendet, um den Netflix‑Look zu
+ * imitieren. Passen Sie die Selektoren nach Bedarf an.
+ */
+
+/* Farb‑ und Layout‑Variablen */
+:root {
+  --accent: #e50914;            /* roter Netflix‑Akzent */
+  --bg-dark: #141414;           /* Hintergrundfarbe für Seiten & Menüs */
+  --bg-card: #1f1f1f;           /* Hintergrund der Karten/Listen */
+  --text-light: #e5e5e5;        /* Grundfarbe für Texte */
+  --radius: 0.3em;              /* Abrundung der Karten und Dialoge */
+}
+
+/* Netflix‑Sans laden (verschiedene Schnitte) */
+@font-face {
+  font-family: "Netflix Sans";
+  font-weight: 100;
+  font-display: optional;
+  src: url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Th.woff2") format("woff2"),
+       url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Th.woff")  format("woff");
+}
+@font-face {
+  font-family: "Netflix Sans";
+  font-weight: 300;
+  font-display: optional;
+  src: url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Lt.woff2") format("woff2"),
+       url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Lt.woff")  format("woff");
+}
+@font-face {
+  font-family: "Netflix Sans";
+  font-weight: 400;
+  font-display: optional;
+  src: url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff2") format("woff2"),
+       url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Rg.woff")  format("woff");
+}
+@font-face {
+  font-family: "Netflix Sans";
+  font-weight: 700;
+  font-display: optional;
+  src: url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2") format("woff2"),
+       url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff")  format("woff");
+}
+@font-face {
+  font-family: "Netflix Sans";
+  font-weight: 900;
+  font-display: optional;
+  src: url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Blk.woff2") format("woff2"),
+       url("https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Blk.woff") format("woff");
+}
+
+/* Grundlegende Schriftzuweisung */
+body, html, h1, h2, h3, h4, h5, h6 {
+  font-family: "Netflix Sans", sans-serif !important;
+  color: var(--text-light);
+  background-color: var(--bg-dark);
+}
+
+/* Kopfzeile (Menüleiste) dunkler Hintergrund mit rotem Akzent */
+.skinHeader {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-light) !important;
+  border-bottom: 1px solid #000; /* leichte Linie wie bei Netflix */
+}
+/* aktive Tabs und Hover in der Kopfzeile */
+.emby-tab-button.emby-tab-button-active,
+.headerButton:hover,
+.headerButton:focus,
+.emby-tab-button:hover,
+.emby-tab-button:focus {
+  color: var(--accent) !important;
+}
+
+/* globale Hintergründe: Seiten, Dialoge und Karten */
+.backgroundContainer,
+.dialog,
+.mainDrawer,
+.cardBox,
+.paperList,
+.navMenuOption-selected {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-light) !important;
+}
+
+/* Karten und Listen mit leichtem Kontrast */
+.cardBox,
+.paperList {
+  background-color: var(--bg-card) !important;
+  border-radius: var(--radius) !important;
+}
+
+/* Formularfelder und Drop‑down‑Menüs im Netflix‑Stil */
+.emby-input,
+.emby-textarea,
+.emby-select {
+  background-color: var(--bg-card) !important;
+  border-color: #444 !important;
+  border-radius: var(--radius) !important;
+  color: var(--text-light) !important;
+}
+/* Fokusfarbe für Eingaben */
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select:focus {
+  border-color: var(--accent) !important;
+}
+
+/* Abgerundete Bilder und Vorschaukarten */
+.cardImageContainer,
+.itemDetailImage,
+.cardContent-button,
+.cardOverlayContainer {
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+}
+
+/* Wiedergabe‑ und Zähler‑Indikatoren als kleine schwarze Fahnen wie bei Netflix */
+.playedIndicator,
+.countIndicator {
+  background: linear-gradient(-135deg, rgba(40, 40, 40, 0.9) 50%, transparent 50%) !important;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--text-light) !important;
+}
+
+/* Schaltflächen der Kopfzeile, die wir ausblenden möchten (optional) */
+.headerCastButton,
+.headerSyncButton {
+  display: none !important;
+}
+
+/* Größere Tabs für eine bessere Bedienbarkeit – Inspiration aus der Dokumentation */
+.headerTabs.sectionTabs {
+  text-size-adjust: 110%;
+  font-size: 110%;
+}
+.emby-tab-button {
+  padding: 1.4em 1.3em;
+}
+
+/* Subtile Hover‑Animation der Karten */
+.cardBox .cardOverlayContainer:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
